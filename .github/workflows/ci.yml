@@ -25,5 +25,8 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
 
+      - name: Build 
+        run: yarn build 
+
       - name: Test
         run: yarn node --experimental-vm-modules $(yarn bin jest)
