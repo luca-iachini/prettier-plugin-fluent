@@ -2,8 +2,7 @@ import type { Parser, Printer, Doc, ParserOptions } from "prettier";
 
 import { parseFluent, FluentNode } from './parser';
 import { doc, AstPath } from "prettier";
-import { warn } from "console";
-const { line, indent, hardline, join, align, markAsRoot, trim } = doc.builders;
+const { line, indent, join, align, markAsRoot, trim } = doc.builders;
 export const defaultOptions = {};
 
 export const languages = [
