@@ -41,14 +41,13 @@ function print(
 
   switch (node.type) {
     case "Resource":
-      return [path.map(printFn, 'body')];
+      return join('\n', path.map(printFn, 'body'));
     case "Message":
       return [
         node.id.name,
         ' = ',
         path.call(printFn, 'value'),
         path.map(printFn, 'attributes'),
-        hardline
       ];
     case "Attribute":
       return indent([line,
@@ -62,7 +61,7 @@ function print(
     case "Placeable":
       return ['{ ', path.call(printFn, 'expression'), ' }'];
     case "Term":
-      return ['-', node.id.name, ' = ', path.call(printFn, 'value'), hardline];
+      return ['-', node.id.name, ' = ', path.call(printFn, 'value')];
     case "SelectExpression":
       return markAsRoot([
         align(4, [line, path.call(printFn, 'selector'), ' ->']),
@@ -96,9 +95,9 @@ function print(
       return indent(join(line, node.value.split("\n")));
     case "Comment":
       return ['# ', node.content];
-    case "ResourceComment":
-      return ['## ', node.content];
     case "GroupComment":
+      return ['## ', node.content];
+    case "ResourceComment":
       return ['### ', node.content];
     case "Junk":
       return node.content;
