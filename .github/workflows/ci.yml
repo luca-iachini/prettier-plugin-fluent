@@ -28,4 +28,4 @@ jobs:
         run: yarn --immutable
 
       - name: Test
-        run: yarn test
+        run: yarn node --experimental-vm-modules $(yarn jest)
