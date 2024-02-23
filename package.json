@@ -43,7 +43,9 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "release": "changeset publish --tag release-v1",
+    "version": "changeset version && yarn --no-immutable"
   },
   "peerDependencies": {
     "prettier": "^3.1.1"
