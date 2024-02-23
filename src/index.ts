@@ -39,7 +39,6 @@ function print(
 ): Doc {
   const node = path.node;
 
-  console.debug(path);
   switch (node.type) {
     case "Resource":
       return [path.map(printFn, 'body')];
@@ -95,6 +94,12 @@ function print(
       return ['"', node.value, '"'];
     case "TextElement":
       return indent(join(line, node.value.split("\n")));
+    case "Comment":
+      return ['# ', node.content];
+    case "ResourceComment":
+      return ['## ', node.content];
+    case "GroupComment":
+      return ['### ', node.content];
     case "Junk":
       return node.content;
     case undefined:

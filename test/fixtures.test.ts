@@ -53,8 +53,13 @@ describe('it format', () => {
     });
   });
   describe('selectors', () => {
-    test.only('selectors', async () => {
+    test('selectors', async () => {
       await test_fixture('selector');
+    });
+  });
+  describe('comments', () => {
+    test('comments', async () => {
+      await test_fixture('comment');
     });
   });
 });
