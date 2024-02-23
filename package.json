@@ -1,0 +1,36 @@
+{
+  "name": "prettier-plugin-fluent",
+  "version": "1.0.0",
+  "description": "Fluent Prettier Plugin",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "author": "Luca Iachini",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.19",
+    "chai": "^5.1.0",
+    "glob": "^10.3.10",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@fluent/syntax": "^0.19.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "prettier": "^3.1.1"
+  }
+}
