@@ -40,7 +40,6 @@ function print(
 ): Doc {
   const node = path.node;
 
-  console.debug(path);
   switch (node.type) {
     case "Resource":
       return join('\n', path.map(printFn, 'body'));

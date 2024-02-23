@@ -1,6 +1,20 @@
 {
   "name": "prettier-plugin-fluent",
   "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luca-iachini/prettier-plugin-fluent"
+  },
+  "author": {
+    "name": "Luca Iachini",
+    "email": "luca.iachini89@gmail.com"
+  },
+  "keywords": [
+    "prettier",
+    "plugin",
+    "fluent"
+  ], 
   "description": "Fluent Prettier Plugin",
   "type": "module",
   "main": "./lib/index.js",
