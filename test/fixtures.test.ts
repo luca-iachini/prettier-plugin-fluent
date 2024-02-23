@@ -52,4 +52,9 @@ describe('it format', () => {
       await test_fixture('builtins');
     });
   });
+  describe('selectors', () => {
+    test.only('selectors', async () => {
+      await test_fixture('selector');
+    });
+  });
 });

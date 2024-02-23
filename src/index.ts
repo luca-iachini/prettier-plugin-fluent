@@ -2,7 +2,7 @@ import type { Parser, Printer, Doc, ParserOptions } from "prettier";
 
 import { parseFluent, FluentNode } from './parser';
 import { doc, AstPath } from "prettier";
-const { line, indent, hardline, join } = doc.builders;
+const { line, indent, hardline, join, dedent } = doc.builders;
 export const defaultOptions = {};
 
 export const languages = [
@@ -39,6 +39,7 @@ function print(
 ): Doc {
   const node = path.node;
 
+  console.debug(path);
   switch (node.type) {
     case "Resource":
       return [path.map(printFn, 'body')];
@@ -60,9 +61,18 @@ function print(
     case "Pattern":
       return path.map(printFn, 'elements');
     case "Placeable":
-      return ['{ ', path.call(printFn, 'expression'), ' }'];
+      return ['{', path.call(printFn, 'expression'), dedent('}')];
     case "Term":
       return ['-', node.id.name, ' = ', path.call(printFn, 'value'), hardline];
+    case "SelectExpression":
+      return [
+        indent([line,
+          path.call(printFn, 'selector'), ' ->',
+          indent([line, path.map(printFn, 'variants')]),
+        ])
+      ];
+    case "Variant":
+      return [node.default ? '*' : '', '[', node.key.name, '] ', path.call(printFn, 'value'), line];
     case "VariableReference":
       return ['$', node.id.name];
     case "MessageReference":
