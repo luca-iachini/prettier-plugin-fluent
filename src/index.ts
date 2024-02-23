@@ -61,15 +61,13 @@ function print(
     case "Pattern":
       return path.map(printFn, 'elements');
     case "Placeable":
-      return ['{', path.call(printFn, 'expression'), dedent('}')];
+      return ['{', path.call(printFn, 'expression'), '}'];
     case "Term":
       return ['-', node.id.name, ' = ', path.call(printFn, 'value'), hardline];
     case "SelectExpression":
       return [
-        indent([line,
-          path.call(printFn, 'selector'), ' ->',
-          indent([line, path.map(printFn, 'variants')]),
-        ])
+        path.call(printFn, 'selector'), ' ->',
+        indent([line, path.map(printFn, 'variants')]),
       ];
     case "Variant":
       return [node.default ? '*' : '', '[', node.key.name, '] ', path.call(printFn, 'value'), line];
