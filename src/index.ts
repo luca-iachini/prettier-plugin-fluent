@@ -2,6 +2,7 @@ import type { Parser, Printer, Doc, ParserOptions } from "prettier";
 
 import { parseFluent, FluentNode } from './parser';
 import { doc, AstPath } from "prettier";
+import { warn } from "console";
 const { line, indent, hardline, join, align, markAsRoot, trim } = doc.builders;
 export const defaultOptions = {};
 
@@ -39,6 +40,7 @@ function print(
 ): Doc {
   const node = path.node;
 
+  console.debug(path);
   switch (node.type) {
     case "Resource":
       return join('\n', path.map(printFn, 'body'));
@@ -92,13 +94,13 @@ function print(
     case "StringLiteral":
       return ['"', node.value, '"'];
     case "TextElement":
-      return indent(join(line, node.value.split("\n")));
+      return indent(join(line, node.value.split('\n')));
     case "Comment":
-      return ['# ', node.content];
+      return commentContent('#', node.content);
     case "GroupComment":
-      return ['## ', node.content];
+      return commentContent('##', node.content);
     case "ResourceComment":
-      return ['### ', node.content];
+      return commentContent('###', node.content);
     case "Junk":
       return node.content;
     case undefined:
@@ -106,4 +108,8 @@ function print(
     default:
       throw new Error(`Unknown node type: ${node?.type}`);
   }
+}
+
+function commentContent(heading: String, content: String): Doc {
+  return join(line, content.split('\n').map((l: String) => `${heading} ${l}`));
 }

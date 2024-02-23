@@ -7,7 +7,7 @@ const fixtures = path.resolve(__dirname, 'fixtures');
 
 async function test_fixture(name: String) {
   let inputContent = readFileSync(path.join(fixtures, `${name}_input.ftl`), 'utf-8');
-  let outputContent = readFileSync(path.join(fixtures, `${name}_output.ftl`), 'utf-8');
+  let outputContent = readFileSync(path.join(fixtures, `${name}_output.ftl`), 'utf-8').trimEnd();
   let formatted = await prettier.format(inputContent, {
     parser: "fluent",
     plugins: ['prettier-plugin-fluent'],
