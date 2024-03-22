@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build
-        uses: ./.github/workflows/build.yml
+        uses: ./.github/workflows/action.yml
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
