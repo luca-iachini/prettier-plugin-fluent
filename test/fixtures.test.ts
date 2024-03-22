@@ -10,7 +10,7 @@ async function test_fixture(name: String) {
   let outputContent = readFileSync(path.join(fixtures, `${name}_output.ftl`), 'utf-8').trimEnd();
   let formatted = await prettier.format(inputContent, {
     parser: "fluent",
-    plugins: ['prettier-plugin-fluent'],
+    plugins: ['@luca-iachini/prettier-plugin-fluent'],
   });
   expect(formatted).toBe(outputContent);
 }
