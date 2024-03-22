@@ -1,6 +1,15 @@
 # Prettier Plugin for Fluent 
 [![npm version](https://badge.fury.io/js/@luca-iachini%2Fprettier-plugin-fluent.svg)](https://badge.fury.io/js/@luca-iachini%2Fprettier-plugin-fluent)
 
+<p align="center">
+  &nbsp;&nbsp;<img alt="Prettier"
+  height="80"
+  src="https://cdn.rawgit.com/prettier/prettier-logo/master/images/prettier-icon-light.svg">&nbsp;&nbsp;
+  &nbsp;&nbsp;<img alt="Fluent"
+  height="80"
+  src="https://avatars.githubusercontent.com/u/24696436?s=200&v=4">&nbsp;&nbsp;
+</p>
+
 Prettier plugin for formatting  [Fluent](https://projectfluent.org/) files. Fluent is a localization paradigm designed to unleash the expressive power of natural language. The format used to describe translation resources in Fluent is called FTL.
 
 FTL is designed to be simple to read, yet powerful enough to represent complex concepts from natural languages such as gender, plurals, conjugations, and more.
