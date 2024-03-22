@@ -41,7 +41,7 @@ function print(
 
   switch (node.type) {
     case "Resource":
-      return join('\n', path.map(printFn, 'body'));
+      return join(line, path.map(printFn, 'body'));
     case "Message":
       return [
         node.id.name,
@@ -102,7 +102,11 @@ function print(
     case "ResourceComment":
       return commentContent('###', node.content);
     case "Junk":
-      return node.content;
+      let error = node.annotations.reduce(
+        (error: String, annotation: any) =>
+          error + `lines ${annotation.span.start} - ${annotation.span.end}: [${annotation.code}] ${annotation.message}\n`
+        , '');
+      throw new Error(error);
     case undefined:
       return '';
     default:
