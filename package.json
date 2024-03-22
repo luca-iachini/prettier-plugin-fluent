@@ -58,5 +58,8 @@
   "directories": {
     "lib": "lib",
     "test": "test"
+  }, 
+  "publishConfig": {
+    "directory": "./lib"
   }
 }
