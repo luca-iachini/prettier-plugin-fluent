@@ -6,6 +6,9 @@ on:
       - main 
 
 jobs:
+  build:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -21,8 +24,6 @@ jobs:
           node-version: 20
           cache: yarn
 
-      - name: Install Dependencies
-        run: yarn --immutable
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
