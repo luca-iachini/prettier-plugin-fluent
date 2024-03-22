@@ -91,6 +91,8 @@ function print(
       return [node.name.name, ": ", path.call(printFn, 'value')];
     case "StringLiteral":
       return ['"', node.value, '"'];
+    case "NumberLiteral":
+      return [node.value];
     case "TextElement":
       return indent(join(line, node.value.split('\n')));
     case "Comment":
