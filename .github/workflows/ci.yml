@@ -7,4 +7,4 @@ jobs:
   ci:
     - uses: actions/checkout@v3
     - name: Build
-      uses: ./.github/workflows/action
+      uses: ./.github/workflows/build
