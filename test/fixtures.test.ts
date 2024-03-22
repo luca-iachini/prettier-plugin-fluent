@@ -28,7 +28,7 @@ describe('it format', () => {
       await test_fixture('message_multiple_lines_spaces');
     });
   });
-  describe('attributes', () => {
+  describe.only('attributes', () => {
     test('message with attributes', async () => {
       await test_fixture('attributes')
     });

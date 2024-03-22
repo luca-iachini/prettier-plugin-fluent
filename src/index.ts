@@ -17,6 +17,7 @@ export const parsers: Record<string, Parser<FluentNode>> = {
   fluent: {
     parse: parseFluent,
     astFormat: "fluent-ast",
+    preprocess,
     locStart: (node) => {
       return node.span?.start || 0;
     },
@@ -32,12 +33,18 @@ export const printers: Record<string, Printer<FluentNode>> = {
   },
 };
 
+function preprocess(text: string, _options: object): string {
+  return text.replace(/^\t+/gm, '  ');
+}
+
 function print(
   path: AstPath,
   _options: ParserOptions<object>,
   printFn: (selector: AstPath) => Doc,
 ): Doc {
   const node = path.node;
+
+  console.log(node);
 
   switch (node.type) {
     case "Resource":
