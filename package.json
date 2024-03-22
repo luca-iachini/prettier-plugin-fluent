@@ -1,23 +1,26 @@
 {
   "name": "@luca-iachini/prettier-plugin-fluent",
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "description": "Fluent Prettier Plugin",
+  "author": "Luca Iachini",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luca-iachini/prettier-plugin-fluent.git"
   },
-  "author": "Luca Iachini",
+  "homepage": "https://github.com/luca-iachini/prettier-plugin-fluent#readme",
+  "bugs": {
+    "url": "https://github.com/luca-iachini/prettier-plugin-fluent/issues"
+  },
   "keywords": [
     "prettier",
     "plugin",
     "fluent"
   ],
-  "description": "Fluent Prettier Plugin",
-  "type": "module",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
-    "./parser": "./lib/parser.js"
+    ".": "./dist/index.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
@@ -50,14 +53,5 @@
   "peerDependencies": {
     "prettier": "^3.1.1"
   },
-  "types": "./lib/index.d.ts",
-  "bugs": {
-    "url": "https://github.com/luca-iachini/prettier-plugin-fluent/issues"
-  },
-  "homepage": "https://github.com/luca-iachini/prettier-plugin-fluent#readme",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  }, 
-  "files": ["./lib"]
+  "files": ["./dist"]
 }
