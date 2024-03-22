@@ -4,6 +4,6 @@ on:
   - pull_request
 
 jobs:
-  build:
+  ci:
     uses: ./.github/workflows/build.yml
     secrets: inherit
