@@ -9,8 +9,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Build
         uses: ./.github/workflows/build.yml
       - name: Create Release Pull Request or Publish to npm
