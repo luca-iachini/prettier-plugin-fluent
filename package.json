@@ -1,10 +1,10 @@
 {
-  "name": "prettier-plugin-fluent",
+  "name": "@luca-iachini/prettier-plugin-fluent",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/luca-iachini/prettier-plugin-fluent"
+    "url": "git+https://github.com/luca-iachini/prettier-plugin-fluent.git"
   },
   "author": "Luca Iachini",
   "keywords": [
@@ -49,5 +49,14 @@
   },
   "peerDependencies": {
     "prettier": "^3.1.1"
+  },
+  "types": "./lib/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/luca-iachini/prettier-plugin-fluent/issues"
+  },
+  "homepage": "https://github.com/luca-iachini/prettier-plugin-fluent#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
