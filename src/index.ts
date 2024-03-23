@@ -2,6 +2,7 @@ import type { Parser, Printer, Doc, ParserOptions } from "prettier";
 
 import { parseFluent, FluentNode } from './parser';
 import { doc, AstPath } from "prettier";
+import { Annotation } from "@fluent/syntax/esm/ast";
 const { line, indent, join, align, markAsRoot, trim } = doc.builders;
 export const defaultOptions = {};
 
@@ -17,7 +18,6 @@ export const parsers: Record<string, Parser<FluentNode>> = {
   fluent: {
     parse: parseFluent,
     astFormat: "fluent-ast",
-    preprocess,
     locStart: (node) => {
       return node.span?.start || 0;
     },
@@ -32,10 +32,6 @@ export const printers: Record<string, Printer<FluentNode>> = {
     print,
   },
 };
-
-function preprocess(text: string, _options: object): string {
-  return text.replace(/^\t+/gm, '  ');
-}
 
 function print(
   path: AstPath,
@@ -83,8 +79,8 @@ function print(
       return ['-', node.id.name];
     case "FunctionReference":
       return [node.id.name, '(', path.call(printFn, 'arguments'), ')'];
-    case "CallArguments":
-      let args = [];
+    case "CallArguments": {
+      const args = [];
       if (node.positional.length > 0) {
         args.push(join(', ', path.map(printFn, 'positional')));
       }
@@ -92,26 +88,33 @@ function print(
         args.push(join(', ', path.map(printFn, 'named')));
       }
       return join(', ', args);
+    }
     case "NamedArgument":
       return [node.name.name, ": ", path.call(printFn, 'value')];
     case "StringLiteral":
       return ['"', node.value, '"'];
     case "NumberLiteral":
       return [node.value];
-    case "TextElement":
-      return indent(join(line, node.value.split('\n')));
+    case "TextElement": {
+      if(/\n\s/.test(node.value)) {
+        return indent([line, join(line, node.value.split('\n'))])
+      } else {
+        return indent(join(line, node.value.split('\n')));
+      }
+    }
     case "Comment":
       return commentContent('#', node.content);
     case "GroupComment":
       return commentContent('##', node.content);
     case "ResourceComment":
       return commentContent('###', node.content);
-    case "Junk":
-      let error = node.annotations.reduce(
-        (error: String, annotation: any) =>
-          error + `lines ${annotation.span.start} - ${annotation.span.end}: [${annotation.code}] ${annotation.message}\n`
+    case "Junk": {
+      const error = node.annotations.reduce(
+        (error: string, annotation: Annotation) =>
+          error + `lines ${annotation.span?.start} - ${annotation.span?.end}: [${annotation.code}] ${annotation.message}\n`
         , '');
       throw new Error(error);
+    }
     case undefined:
       return '';
     default:
@@ -119,6 +122,6 @@ function print(
   }
 }
 
-function commentContent(heading: String, content: String): Doc {
-  return join(line, content.split('\n').map((l: String) => `${heading} ${l}`));
+function commentContent(heading: string, content: string): Doc {
+  return join(line, content.split('\n').map((l: string) => `${heading} ${l}`));
 }

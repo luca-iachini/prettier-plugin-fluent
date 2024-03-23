@@ -5,10 +5,10 @@ import { describe, expect, test } from '@jest/globals';
 
 const fixtures = path.resolve(__dirname, 'fixtures');
 
-async function test_fixture(name: String) {
-  let inputContent = readFileSync(path.join(fixtures, `${name}_input.ftl`), 'utf-8');
-  let outputContent = readFileSync(path.join(fixtures, `${name}_output.ftl`), 'utf-8').trimEnd();
-  let formatted = await prettier.format(inputContent, {
+async function test_fixture(name: string) {
+  const inputContent = readFileSync(path.join(fixtures, `${name}_input.ftl`), 'utf-8');
+  const outputContent = readFileSync(path.join(fixtures, `${name}_output.ftl`), 'utf-8').trimEnd();
+  const formatted = await prettier.format(inputContent, {
     parser: "fluent",
     plugins: ['@luca-iachini/prettier-plugin-fluent'],
   });
@@ -22,7 +22,6 @@ describe('it format', () => {
     });
     test('multiple lines', async () => {
       await test_fixture('message_multiple_lines');
-      await test_fixture('message_multiple_lines_spaces');
     });
     test('multiple lines with spaces', async () => {
       await test_fixture('message_multiple_lines_spaces');
