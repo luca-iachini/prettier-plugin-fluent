@@ -114,8 +114,6 @@ function print(
     case "ResourceComment":
       return commentContent('###', node.content);
     case "Junk": {
-      console.log(node);
-      console.log(node.annotations[0].arguments);
       const error = node.annotations.map(
         (annotation: Annotation) => `${node.span?.start}:${node.span?.end} [${annotation.code}] ${annotation.message}`
       ).join('\n');
