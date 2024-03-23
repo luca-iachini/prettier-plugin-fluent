@@ -13,6 +13,10 @@ runs:
      run: yarn --immutable
      shell: bash
 
+   - name: Lint 
+     run: yarn lint
+     shell: bash
+
    - name: Build 
      run: yarn build 
      shell: bash

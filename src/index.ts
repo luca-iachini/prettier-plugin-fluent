@@ -24,6 +24,7 @@ export const parsers: Record<string, Parser<FluentNode>> = {
     locEnd: (node) => {
       return node.span?.end || 1;
     },
+    preprocess,
   },
 };
 
@@ -32,6 +33,10 @@ export const printers: Record<string, Printer<FluentNode>> = {
     print,
   },
 };
+
+function preprocess(text: string): string {
+  return text.replace(/^\t/gm, ' ');
+}
 
 function print(
   path: AstPath,
@@ -96,7 +101,7 @@ function print(
     case "NumberLiteral":
       return [node.value];
     case "TextElement": {
-      if(/\n\s/.test(node.value)) {
+      if (/\n\s/.test(node.value)) {
         return indent([line, join(line, node.value.split('\n'))])
       } else {
         return indent(join(line, node.value.split('\n')));
@@ -109,11 +114,12 @@ function print(
     case "ResourceComment":
       return commentContent('###', node.content);
     case "Junk": {
-      const error = node.annotations.reduce(
-        (error: string, annotation: Annotation) =>
-          error + `lines ${annotation.span?.start} - ${annotation.span?.end}: [${annotation.code}] ${annotation.message}\n`
-        , '');
-      throw new Error(error);
+      console.log(node);
+      console.log(node.annotations[0].arguments);
+      const error = node.annotations.map(
+        (annotation: Annotation) => `${node.span?.start}:${node.span?.end} [${annotation.code}] ${annotation.message}`
+      ).join('\n');
+      throw new Error(`${error}:\n${node.content}`);
     }
     case undefined:
       return '';
