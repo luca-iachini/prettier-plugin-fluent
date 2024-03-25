@@ -82,8 +82,16 @@ function print(
       return ['$', node.id.name];
     case "MessageReference":
       return [node.id.name];
-    case "TermReference":
-      return ['-', node.id.name];
+    case "TermReference": {
+      let out = `-${node.id.name}`;
+      if (node.attribute) {
+        out += `.${node.attribute.name}`;
+      }
+      if (node.arguments) {
+        out += path.call(printFn, 'arguments');
+      }
+      return out;
+    }
     case "FunctionReference":
       return [node.id.name, '(', path.call(printFn, 'arguments'), ')'];
     case "CallArguments": {
