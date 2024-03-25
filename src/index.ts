@@ -49,7 +49,6 @@ function print(
     case "Resource":
       return join(line, path.map(printFn, 'body'));
     case "Message":
-      console.log(node);
       return [
         node.comment ? [path.call(printFn, 'comment'), line] : '',
         node.id.name,
