@@ -73,8 +73,8 @@ function print(
       return ['-', node.id.name, ' = ', path.call(printFn, 'value')];
     case "SelectExpression":
       return markAsRoot([
-        align(4, [line, path.call(printFn, 'selector'), ' ->']),
-        align(6, [line, path.map(printFn, 'variants')]),
+        path.call(printFn, 'selector'), ' ->',
+        align(4, [line, path.map(printFn, 'variants')]),
         trim
       ]);
     case "Variant":
