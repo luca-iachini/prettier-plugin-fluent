@@ -51,7 +51,7 @@ function print(
     case "Message":
       console.log(node);
       return [
-        node.comment !== null ? [path.call(printFn, 'comment'), line] : '',
+        node.comment ? [path.call(printFn, 'comment'), line] : '',
         node.id.name,
         ' = ',
         path.call(printFn, 'value'),
