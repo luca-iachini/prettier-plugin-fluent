@@ -45,11 +45,14 @@ function print(
 ): Doc {
   const node = path.node;
 
+  console.log(node);
+
   switch (node.type) {
     case "Resource":
       return join(line, path.map(printFn, 'body'));
     case "Message":
       return [
+        path.call(printFn, 'comment'),
         node.id.name,
         ' = ',
         path.call(printFn, 'value'),
@@ -108,11 +111,11 @@ function print(
       }
     }
     case "Comment":
-      return commentContent('#', node.content);
+      return [commentContent('#', node.content), line];
     case "GroupComment":
-      return commentContent('##', node.content);
+      return [commentContent('##', node.content), line];
     case "ResourceComment":
-      return commentContent('###', node.content);
+      return [commentContent('###', node.content), line];
     case "Junk": {
       const error = node.annotations.map(
         (annotation: Annotation) => `${node.span?.start}:${node.span?.end} [${annotation.code}] ${annotation.message}`
