@@ -5,4 +5,4 @@ login-input = Predefined value
 password-input = Password
   .placeholder = password
   .aria-label = Password input value
-  .title = Type your password 
+  .title = Type your password

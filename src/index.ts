@@ -47,7 +47,7 @@ function print(
 
   switch (node.type) {
     case "Resource":
-      return join(line, path.map(printFn, 'body'));
+      return [join(line, path.map(printFn, 'body')), line];
     case "Message":
       return [
         node.comment ? [path.call(printFn, 'comment'), line] : '',
