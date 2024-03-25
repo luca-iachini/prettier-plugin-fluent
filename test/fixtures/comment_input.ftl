@@ -6,7 +6,6 @@
 
 ## Global phrases shared across pages
 
-
 ## Creating page
 
 # Note: { $title } is a placeholder for the title of the web page

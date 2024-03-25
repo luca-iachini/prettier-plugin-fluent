@@ -45,14 +45,13 @@ function print(
 ): Doc {
   const node = path.node;
 
-  console.log(node);
-
   switch (node.type) {
     case "Resource":
       return join(line, path.map(printFn, 'body'));
     case "Message":
+      console.log(node);
       return [
-        path.call(printFn, 'comment'),
+        node.comment !== null ? [path.call(printFn, 'comment'), line] : '',
         node.id.name,
         ' = ',
         path.call(printFn, 'value'),
@@ -74,7 +73,7 @@ function print(
     case "SelectExpression":
       return markAsRoot([
         path.call(printFn, 'selector'), ' ->',
-        align(4, [line, path.map(printFn, 'variants')]),
+        align(2, [line, path.map(printFn, 'variants')]),
         trim
       ]);
     case "Variant":
@@ -111,11 +110,11 @@ function print(
       }
     }
     case "Comment":
-      return [commentContent('#', node.content), line];
+      return commentContent('#', node.content);
     case "GroupComment":
-      return [commentContent('##', node.content), line];
+      return commentContent('##', node.content);
     case "ResourceComment":
-      return [commentContent('###', node.content), line];
+      return commentContent('###', node.content);
     case "Junk": {
       const error = node.annotations.map(
         (annotation: Annotation) => `${node.span?.start}:${node.span?.end} [${annotation.code}] ${annotation.message}`
