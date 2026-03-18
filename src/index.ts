@@ -76,7 +76,14 @@ function print(
         trim
       ]);
     case "Variant":
-      return [node.default ? '*' : '', '[', node.key.name, '] ', path.call(printFn, 'value'), line];
+      return [
+        node.default ? '*' : '',
+        '[',
+        node.key.type === "Identifier" ? node.key.name : node.key.value,
+        '] ',
+        path.call(printFn, 'value'),
+        line,
+      ];
     case "VariableReference":
       return ['$', node.id.name];
     case "MessageReference":

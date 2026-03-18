@@ -55,6 +55,9 @@ describe('it format', () => {
     test('selectors', async () => {
       await test_fixture('selector');
     });
+    test('numeric selectors', async () => {
+      await test_fixture('numeric_selector');
+    });
   });
   describe('comments', () => {
     test('comments', async () => {
