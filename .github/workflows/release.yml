@@ -28,6 +28,6 @@ jobs:
           commit: 'chore: release package(s)'
           title: 'chore: release package(s)'
           version: yarn version
-          publish: npm publish
+          publish: npm publish --provenance
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
