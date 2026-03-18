@@ -8,6 +8,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
@@ -17,5 +20,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Build
         uses: ./.github/workflows/build
-      - name: Publish to npm
-        run: npm publish --access public
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          commit: 'chore: release package(s)'
+          title: 'chore: release package(s)'
+          version: yarn version
+          publish: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
