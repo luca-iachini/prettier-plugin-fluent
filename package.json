@@ -23,27 +23,30 @@
     ".": "./dist/index.js"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
-    "@types/chai": "^4.3.11",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.19",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "chai": "^5.1.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "glob": "^10.3.10",
-    "jest": "^29.7.0",
+    "@changesets/cli": "^2.30.0",
+    "@types/chai": "^5.2.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/parser": "^8.57.1",
+    "chai": "^6.2.2",
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "glob": "^13.0.6",
+    "jest": "^30.3.0",
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3",
-    "typescript-eslint": "^7.0.2"
+    "typescript-eslint": "^8.57.1"
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^10.0.1",
     "@fluent/syntax": "^0.19.0",
-    "node-fetch": "^2.7.0"
+    "globals": "^17.4.0",
+    "node-fetch": "^3.3.2"
   },
   "scripts": {
     "test": "jest",
